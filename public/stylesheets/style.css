@@ -70,3 +70,24 @@ nav a.current, nav a:hover {
   background: #83cd29;
   color: #000;
 }
+
+.meta {
+  padding: 7px;
+  border: 1px solid #ccb;
+  background: #ccb;
+}
+
+a.more {
+  display: block;
+  width: 75px;
+  background: #404137;
+  color: #fff;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+.post {
+  display: block;
+  border-bottom: 1px solid grey;
+  padding-bottom: 20px;
+}

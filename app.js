@@ -1,21 +1,24 @@
-var express          = require('express');
-var path             = require('path');
-var favicon          = require('serve-favicon');
-var logger           = require('morgan');
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
 var expressValidator = require('express-validator');
-var cookieParser     = require('cookie-parser');
-var session          = require('express-session');
-var bodyParser       = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 
-var mongo            = require('mongodb');
-var db               = require('monk')('localhost/nodeblog');
-var multer           = require('multer');
-var flash            = require('connect-flash');
+var mongo = require('mongodb');
+var multer = require('multer');
+var flash = require('connect-flash');
 
-var routes           = require('./routes/index');
-var users            = require('./routes/users');
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
-var app              = express();
+var db = require('monk')('localhost/nodeblog');
+
+var app = express();
+
+app.locals.moment = require('moment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -65,14 +68,15 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', routes);
-app.use('/users', users);
-
 // Access DB in any route
 app.use(function(req, res, next) {
   req.db = db;
   next();
 });
+
+app.use('/', routes);
+app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
