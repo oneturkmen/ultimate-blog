@@ -8,8 +8,7 @@ var monk = require('monk');
 router.get('/', function(req, res, next) {
   var dbs = req.db;
   var posts = dbs.get('posts');
-  posts.find({}, {}, function(err, data) {
-    console.log(data);
+  posts.find({}, {}, function(err, data) {    
     res.render('index', {
       posts: data
     });
