@@ -13,6 +13,7 @@ var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 var posts = require('./routes/posts');
+var categories = require('./routes/categories');
 
 var db = require('monk')('localhost/nodeblog');
 
@@ -77,7 +78,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/posts', posts);
-
+app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
