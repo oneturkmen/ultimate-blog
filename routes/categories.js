@@ -3,6 +3,19 @@ var router = express.Router();
 var mongo = require('mongodb');
 var monk = require('monk');
 
+// Show GET
+router.get('/show/:category', function(req, res, next) {
+  var dbs = req.db;
+  var posts = dbs.get('posts');
+
+  posts.find({ category: req.params.category }, {}, function(err, data) {
+    res.render('index', {
+      "title": req.params.category,
+      "posts": data
+    });
+  });
+});
+
 // Categories GET
 router.get('/add', function(req, res, next) {
   res.render('addcategory', {
@@ -38,7 +51,7 @@ router.post('/add', function(req, res, next) {
         res.redirect('/');
       }
     });
-    
+
   }
 });
 

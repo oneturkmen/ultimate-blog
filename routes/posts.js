@@ -2,6 +2,19 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 
+router.get('/show/:id', function(req, res, next) {
+  var dbs = req.db;
+  var posts = dbs.get('posts');
+  var id = req.params.id;
+
+  posts.findById(id, function(err, data) {
+    res.render('show', {
+      "post": data
+    });
+  });
+
+});
+
 router.get('/add', function(req, res, next) {
   var dbs = req.db;
   var categories = dbs.get('categories');
