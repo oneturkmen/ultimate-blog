@@ -1,29 +1,10 @@
+/* SYSTEM CLASSES */
+
 body {
   font-family: arial;
   font-size: 15px;
   background: #d3d3f3;
   color: #666;
-}
-
-.logo {
-  width: 120px;
-  height: 120px;
-  text-align: center;
-  margin: auto;
-  margin-bottom: 20px;
-  display: block;
-  border: 2px solid #404137;
-}
-
-.container {
-  width: 750px;
-  border: 1px solid #ccc;
-  margin: 20px auto;
-  padding: 20px;
-}
-
-.clr {
-  clear: both;
 }
 
 ul {
@@ -71,6 +52,68 @@ nav a.current, nav a:hover {
   color: #000;
 }
 
+
+label {
+  display: inline-block;
+  width: 180px;
+}
+
+input, select, textarea {
+  margin-bottom: 15px;
+}
+
+input[type='text'], input[type='email'], select, textarea {
+  padding: 3px;
+  height: 20px;
+  width: 200px;
+  border: 1px #ccb solid;
+}
+
+footer {
+  margin-top: 20px;
+  height: 30px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+select {
+  height: 28px;
+}
+
+textarea {
+  height: 70px;
+  width: 400px;
+}
+
+
+/* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --*/
+
+/* CUSTOM CLASSES AND IDs BELOW  -- -- -- -- -- -- --*/
+
+/* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --*/
+
+
+.logo {
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
+  display: block;
+  border: 2px solid #404137;
+}
+
+.container {
+  width: 750px;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.clr {
+  clear: both;
+}
+
 .meta {
   padding: 7px;
   border: 1px solid #ccb;
@@ -94,31 +137,6 @@ a.more {
 
 .post img {
   width: 100%;
-}
-
-label {
-  display: inline-block;
-  width: 180px;
-}
-
-input, select, textarea {
-  margin-bottom: 15px;
-}
-
-input[type='text'], select, textarea {
-  padding: 3px;
-  height: 20px;
-  width: 200px;
-  border: 1px #ccb solid;
-}
-
-select {
-  height: 28px;
-}
-
-textarea {
-  height: 70px;
-  width: 400px;
 }
 
 .alert {
@@ -147,13 +165,22 @@ ul.success li {
   list-style: none;
 }
 
-footer {
-  margin-top: 20px;
-  height: 30px;
-  text-align: center;
-  border-top: 1px solid #ccc;
-}
-
 .show img {
   width: 100%;
+}
+
+.comment-form {
+  margin: 30px 0;
+}
+
+.comment {
+  background: #ccc;
+  padding: 5px;
+  border: #666 solid 1px;
+  margin: 15px 0 20px;
+}
+
+.comment-name {
+  font-size: 16px;
+  font-weight: bold;
 }

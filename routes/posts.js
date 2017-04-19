@@ -52,7 +52,7 @@ router.post('/add', function(req, res, next) {
 
   // Form validation
   req.checkBody('title', 'Title field is required').notEmpty();
-  req.checkBody('body', 'Body field is required');
+  req.checkBody('body', 'Body field is required').notEmpty();
 
   // Check errors
   var errors = req.validationErrors();
@@ -85,8 +85,71 @@ router.post('/add', function(req, res, next) {
     });
 
   }
+});
 
+
+router.post('/addcomment', function(req, res, next) {
+  var dbs = req.db;
+  // get the form values
+  var name        = req.body.name;
+  var email       = req.body.email;
+  var body        = req.body.body;
+  var postid      = req.body.postid;
+  var commentdate = new Date();
+  console.log(name);
+  // Form validation
+  req.checkBody('name', 'Name field is required').notEmpty();
+  req.checkBody('email', 'Email field is required').notEmpty();
+  req.checkBody('email', 'Email is not formatted correctly').isEmail();
+  req.checkBody('body', 'Body field is required').notEmpty();
+
+  // Check errors
+  var errors = req.validationErrors();
+
+  if (errors) {
+    var posts = dbs.get('posts');
+
+    posts.findById(postid, function(err, data) {
+      res.render('show', {
+        "errors": errors,
+        "post": data
+      });
+    });
+
+  } else {
+    var comment = {
+      "name": name,
+      "email": email,
+      "body": body,
+      "commentdate": commentdate
+    };
+
+    var posts = dbs.get('posts');
+
+    posts.update(
+      {
+        "_id": postid
+      },
+      {
+        $push: {
+          "comments": comment
+        },
+      },
+      function(err, data) {
+        if (err) {
+          throw err;
+        }
+        else {
+          req.flash('success', 'Comment Added');
+          res.location('/posts/show/' + postid);
+          res.redirect('/posts/show/' + postid);
+        }
+      }
+    );
+  }
 
 });
+
+
 
 module.exports = router;
