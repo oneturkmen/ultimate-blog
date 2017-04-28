@@ -3,8 +3,8 @@
 body {
   font-family: arial;
   font-size: 15px;
-  background: #d3d3f3;
-  color: #666;
+  background: #aee387;
+  color: #002;
 }
 
 ul {
@@ -104,8 +104,9 @@ textarea {
 }
 
 .container {
+  background-color: #fff;
   width: 750px;
-  border: 1px solid #ccc;
+  border: 1px solid #d3d3d3;
   margin: 20px auto;
   padding: 20px;
 }

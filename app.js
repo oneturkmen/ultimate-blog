@@ -6,6 +6,7 @@ var expressValidator = require('express-validator');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
+
 /* ADD: Passport and passport-local */
 /* Tasks: */
 /* 1) Add passport-local and strategy in app.js */
@@ -15,7 +16,8 @@ var session = require('express-session');
 /*    Else, redirect to main page */
 /*    Note, that if not logged in, only login/registration pages are available */
 /*    If logged in, main/add post/add category pages are available as well as logout */
-/* 4) Add logout functionality */
+/* 4) Create separate users.js router + add usernames of users.*/
+/* 5) Add logout functionality */
 /* Good luck to me, hohoho */
 /* PS. Start when you completely finish the blog functionality as planned */
 /*     and only after add authentication procedures */

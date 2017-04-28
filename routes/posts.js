@@ -34,6 +34,8 @@ router.post('/add', function(req, res, next) {
   var title     = req.body.title;
   var body      = req.body.body;
   var category  = req.body.category;
+  // FIXME: req.body.author must be substituted with req.body.username;
+  //        either totally removed (value: hidden) or 
   var author    = req.body.author;
   var date      = new Date();
 
