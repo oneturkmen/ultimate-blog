@@ -29,6 +29,18 @@ module.exports.createUser = function(newUser, callback) {
     // FIXME: After user created, insert into the database.
     newUser.password = hash;
     // Create user
-    newUser.save(callback);
+    callback(null, newUser);
+  });
+}
+
+module.exports.insertUser = function(userQuery) {
+  User.insert(userQuery, (err, res) => {
+    // Handle errors first (if they're present)
+    if (err) {
+      throw err;
+    }
+    else {
+      console.log("User added");
+    }
   });
 }

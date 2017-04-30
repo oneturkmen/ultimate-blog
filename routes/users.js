@@ -21,7 +21,7 @@ router.post('/register', function(req, res, next) {
   var name = req.body.name;
   var email = req.body.email;
   var username = req.body.username;
-  var password1 = req.body.password;
+  var password = req.body.password;
   var password2 = req.body.password2;
 
   // Form validation -> handle the checking if everything is present
@@ -55,8 +55,13 @@ router.post('/register', function(req, res, next) {
 
     // Create User
     User.createUser(newUser, function(err, user) {
-      if (err) throw err;
-      console.log(user);
+      if (err) {
+        throw err;
+      }
+      else {
+        // function defined in the model (../models/user.js);
+        User.insertUser(user);
+      }
     });
 
     // Success message
@@ -65,7 +70,20 @@ router.post('/register', function(req, res, next) {
     res.redirect('/');
   }
 
+});
 
+// Passport serialize and deserialize
+// ---------
+passport.serializeUser(function(user, done) {
+  console.log("serializing...");
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  console.log("deserializing...");
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
 });
 
 
@@ -88,8 +106,6 @@ passport.use(new LocalStrategy( function(username, password, done) {
           return done(null, user);
         }
         else {
-          // FIXME: Still getting 'invalid' password, even though it is valid
-          console.log('Invalid password');
           return done(null, false, {message: 'Invalid password'});
         }
       });
@@ -98,29 +114,17 @@ passport.use(new LocalStrategy( function(username, password, done) {
 ));
 
 
-// Passport serialize and deserialize
-// ---------
-passport.serializeUser(function(user, done) {
-  console.log("serializing...");
-  done(null, user.id);
+router.post('/login', passport.authenticate('local',
+      {
+        failureRedirect:'/users/login/',
+        failureFlash: 'Invalid Username or password',
+        failureFlash: true
+      }
+    ),
+    function (req, res) {
+        req.flash('success', 'You are logged in.');
+        res.redirect('/');
 });
-
-passport.deserializeUser(function(id, done) {
-  console.log("deserializing...");
-  User.getUserById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-router.post('/login', passport.authenticate('local', {
-    failureRedirect:'/users/login/',
-    failureFlash: 'Invalid Username or password',
-    failureFlash: true}),
-      function (req, res) {
-          req.flash('success', 'You are logged in.');
-          res.redirect('/');
-});
-
 
 
 module.exports = router;
