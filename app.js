@@ -6,7 +6,6 @@ var expressValidator = require('express-validator');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-
 /* ADD: Passport and passport-local */
 /* Tasks: */
 /* 1) Add passport-local and strategy in app.js */
@@ -21,6 +20,8 @@ var session = require('express-session');
 /* Good luck to me, hohoho */
 /* PS. Start when you completely finish the blog functionality as planned */
 /*     and only after add authentication procedures */
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var bodyParser = require('body-parser');
 
@@ -31,6 +32,7 @@ var flash = require('connect-flash');
 var routes = require('./routes/index');
 var posts = require('./routes/posts');
 var categories = require('./routes/categories');
+var users = require('./routes/users');
 
 var db = require('monk')('localhost/nodeblog');
 
@@ -63,6 +65,10 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
+
+// passport -> initialize 'passport' session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express validator
 app.use(expressValidator({
@@ -98,9 +104,15 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
+
 app.use('/', routes);
 app.use('/posts', posts);
 app.use('/categories', categories);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

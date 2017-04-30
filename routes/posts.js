@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 
-router.get('/show/:id', function(req, res, next) {
+
+router.get('/show/:id', ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   var posts = dbs.get('posts');
   var id = req.params.id;
@@ -15,7 +16,7 @@ router.get('/show/:id', function(req, res, next) {
 
 });
 
-router.get('/add', function(req, res, next) {
+router.get('/add', ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   var categories = dbs.get('categories');
 
@@ -35,7 +36,7 @@ router.post('/add', function(req, res, next) {
   var body      = req.body.body;
   var category  = req.body.category;
   // FIXME: req.body.author must be substituted with req.body.username;
-  //        either totally removed (value: hidden) or 
+  //        either totally removed (value: hidden) or
   var author    = req.body.author;
   var date      = new Date();
 
@@ -152,6 +153,13 @@ router.post('/addcomment', function(req, res, next) {
 
 });
 
+// Passport: ensures that he or she (user) is already logged in
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/users/login');
+}
 
 
 module.exports = router;

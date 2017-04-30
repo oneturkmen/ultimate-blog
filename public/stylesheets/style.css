@@ -185,3 +185,9 @@ ul.success li {
   font-size: 16px;
   font-weight: bold;
 }
+
+/* Used in 'login' and 'register' pages */
+p.logreg {
+  font-size: 18px;
+  margin: 20px 0 30px 0;
+}
