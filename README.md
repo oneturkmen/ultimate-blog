@@ -1,12 +1,12 @@
 # Ultimate Blog
-Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting purposes.
+Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting purposes. Probably, I will change the audience and the website itself (from blog -> to something else) soon (no earlier than mid-May).
 
 ## Installation
 1. Fork/Download it.
 2. npm install & start
 3. Type 'localhost:3000' in your browser and you are good to go!
 
-## Styles
+## Styles & Features
 If you have any suggestions on how to style *better*, you are more than welcome to send the ideas &/or sketches here b.g.nuryyev at Gmail (credits are guaranteed). Also, if you are like "OMG, I want to see this/that feature!!!", send me the ideas and you will (hopefully) see them soon added & uploaded (again, credits are guaranteed). 
 
 ## What is next?
