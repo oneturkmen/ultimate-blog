@@ -126,5 +126,18 @@ router.post('/login', passport.authenticate('local',
         res.redirect('/');
 });
 
+// Passport: ensures that he or she (user) is already logged in
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/users/login');
+}
+
+router.get('/logout', ensureAuthenticated, function(req, res, next) {
+  req.logout();
+  req.flash('success', 'You have logged out');
+  res.redirect('/users/login');
+});
 
 module.exports = router;

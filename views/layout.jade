@@ -8,16 +8,20 @@ html
       img.logo(src='/images/logo.png')
       nav
         ul
-          li
-            a(href='/') Home
-          li
-            a(href='/posts/add') Add post
-          li
-            a(href='/categories/add') Add category
-          li
-            a(href='/users/login') Login
-          li
-            a(href='/users/register') Register          
+          if user
+            li
+              a(href='/') Home
+            li
+              a(href='/posts/add') Add post
+            li
+              a(href='/categories/add') Add category
+            li
+              a(href='/users/logout') Logout
+          if !user
+            li
+              a(href='/users/login') Login
+            li
+              a(href='/users/register') Register
       != messages()
       block content
       footer
