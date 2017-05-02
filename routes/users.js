@@ -6,6 +6,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+var auth = require('../models/auth');
 
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login'} );
@@ -126,15 +127,7 @@ router.post('/login', passport.authenticate('local',
         res.redirect('/');
 });
 
-// Passport: ensures that he or she (user) is already logged in
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/users/login');
-}
-
-router.get('/logout', ensureAuthenticated, function(req, res, next) {
+router.get('/logout', auth.ensureAuthenticated, function(req, res, next) {
   req.logout();
   req.flash('success', 'You have logged out');
   res.redirect('/users/login');

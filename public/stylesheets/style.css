@@ -3,8 +3,8 @@
 body {
   font-family: arial;
   font-size: 15px;
-  background: #aee387;
-  color: #002;
+  background: #474747;
+  color: #000;
 }
 
 ul {
@@ -48,8 +48,9 @@ nav a {
 }
 
 nav a.current, nav a:hover {
-  background: #83cd29;
-  color: #000;
+  background: #ac0a0a;
+  color: #FFF;
+  border-radius: 5px;
 }
 
 
@@ -130,6 +131,10 @@ a.more {
   margin-top: 30px;
 }
 
+a.more:hover {
+  background-color: #ac0a0a;
+}
+
 .post {
   display: block;
   border-bottom: 1px solid #ccb;
@@ -190,4 +195,39 @@ ul.success li {
 p.logreg {
   font-size: 18px;
   margin: 20px 0 30px 0;
+}
+
+a.categorylink {
+  color: #383c4a;
+}
+
+a.categorylink:hover {
+  color: #ac0a0a;
+}
+
+.notfound {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.notfound p {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.takeback p {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.takeback a {
+  font-size: 24px;
+}
+
+.takeback a:hover {
+  color: #ac0a0a;
+}
+
+a.post_title:hover {
+  color: #ac0a0a;
 }

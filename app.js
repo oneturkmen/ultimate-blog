@@ -88,7 +88,7 @@ app.use(expressValidator({
   }
 }));
 
-
+// Use folder with static (public) files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // connect-flash
@@ -116,9 +116,10 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404);
+  res.render('404', {
+    title: '404: Not found sry'
+  });
 });
 
 // error handlers

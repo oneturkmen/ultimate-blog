@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 
+var auth = require('../models/auth');
 
-router.get('/show/:id', ensureAuthenticated, function(req, res, next) {
+router.get('/show/:id', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   var posts = dbs.get('posts');
   var id = req.params.id;
@@ -16,7 +17,7 @@ router.get('/show/:id', ensureAuthenticated, function(req, res, next) {
 
 });
 
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   var categories = dbs.get('categories');
 
@@ -29,7 +30,7 @@ router.get('/add', ensureAuthenticated, function(req, res, next) {
 
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/add', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   // get the form values
   var title     = req.body.title;
@@ -91,7 +92,7 @@ router.post('/add', function(req, res, next) {
 });
 
 
-router.post('/addcomment', function(req, res, next) {
+router.post('/addcomment', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   // get the form values
   var name        = req.body.name;
@@ -152,14 +153,6 @@ router.post('/addcomment', function(req, res, next) {
   }
 
 });
-
-// Passport: ensures that he or she (user) is already logged in
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/users/login');
-}
 
 
 module.exports = router;

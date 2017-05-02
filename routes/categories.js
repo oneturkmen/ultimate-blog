@@ -3,8 +3,10 @@ var router = express.Router();
 var mongo = require('mongodb');
 var monk = require('monk');
 
+var auth = require('../models/auth');
+
 // Show GET
-router.get('/show/:category', ensureAuthenticated, function(req, res, next) {
+router.get('/show/:category', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
   var posts = dbs.get('posts');
 
@@ -17,13 +19,13 @@ router.get('/show/:category', ensureAuthenticated, function(req, res, next) {
 });
 
 // Categories GET
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', auth.ensureAuthenticated, function(req, res, next) {
   res.render('addcategory', {
     "title": "Add Category"
   })
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/add', auth.ensureAuthenticated, function(req, res, next) {
   var dbs = req.db;
 
   var title = req.body.title;
@@ -54,15 +56,6 @@ router.post('/add', function(req, res, next) {
 
   }
 });
-
-// Passport: ensures that he or she (user) has already logged in
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/users/login');
-}
-
 
 
 module.exports = router;
