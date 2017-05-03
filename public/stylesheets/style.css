@@ -3,7 +3,7 @@
 body {
   font-family: arial;
   font-size: 15px;
-  background: #474747;
+  background: #e3e3e4;
   color: #000;
 }
 
@@ -51,6 +51,7 @@ nav a.current, nav a:hover {
   background: #ac0a0a;
   color: #FFF;
   border-radius: 5px;
+  transition: 0.15s;
 }
 
 
@@ -72,6 +73,7 @@ input[type='text'], input[type='email'], select, textarea {
 
 footer {
   margin-top: 20px;
+  padding-top: 20px;
   height: 30px;
   text-align: center;
   border-top: 1px solid #ccc;
@@ -107,7 +109,7 @@ textarea {
 .container {
   background-color: #fff;
   width: 750px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #7F7F7F;
   margin: 20px auto;
   padding: 20px;
 }
@@ -145,15 +147,12 @@ a.more:hover {
   width: 100%;
 }
 
-.alert {
+ul.errors li, ul.error li {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
   list-style: none;
-}
-
-.alert-danger {
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd2;
@@ -189,6 +188,8 @@ ul.success li {
 .comment-name {
   font-size: 16px;
   font-weight: bold;
+  margin: 0 0 15px 0;
+  font-style: italic;
 }
 
 /* Used in 'login' and 'register' pages */

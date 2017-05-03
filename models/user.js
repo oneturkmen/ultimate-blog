@@ -22,11 +22,14 @@ module.exports.getUserByUsername = function(username, callback) {
   User.findOne(query, {}, callback);
 }
 
+module.exports.checkUserExistence = function(user, callback) {
+  User.findOne( { $or: [ { username: user.username }, { email: user.email } ] }, {}, callback);
+}
+
 module.exports.createUser = function(newUser, callback) {
   bcrypt.hash(newUser.password, 10, function(err, hash) {
     if (err) throw err;
     // Set hashed password
-    // FIXME: After user created, insert into the database.
     newUser.password = hash;
     // Create user
     callback(null, newUser);

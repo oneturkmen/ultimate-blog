@@ -55,20 +55,33 @@ router.post('/register', function(req, res, next) {
     };
 
     // Create User
-    User.createUser(newUser, function(err, user) {
-      if (err) {
-        throw err;
+    User.checkUserExistence(newUser, (err, user_g) => {
+      if (err) throw err;
+
+      if (!user_g) {
+
+        User.createUser(newUser, function(err, user) {
+          if (err) {
+            throw err;
+          }
+          else {
+            // function defined in the model (../models/user.js);
+            User.insertUser(user);
+          }
+        });
+
+
+        // Success message
+        req.flash('success', 'Yay! You are successfully registered.');
+        res.location('/');
+        res.redirect('/');
       }
       else {
-        // function defined in the model (../models/user.js);
-        User.insertUser(user);
+        req.flash('error', 'User already exists!');
+        res.location('/users/register');
+        res.redirect('/users/register');
       }
     });
-
-    // Success message
-    req.flash('success', 'Yay! You are successfully registered.');
-    res.location('/');
-    res.redirect('/');
   }
 
 });
