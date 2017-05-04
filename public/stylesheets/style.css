@@ -232,3 +232,31 @@ a.categorylink:hover {
 a.post_title:hover {
   color: #ac0a0a;
 }
+
+.form-control {
+  margin: 0 0 25px 0;
+}
+
+#h1-category {
+  margin: auto auto 30px auto;
+}
+
+#category-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-category-offer {
+  margin: 0 0 15px 0;
+}
+
+.post-category-offer p {
+  font-style: italic;
+  color: #003366;
+}
+
+.post-category-offer a {
+  font-weight: bold;
+  font-style: normal;
+  color: #ac0a0a;
+}
