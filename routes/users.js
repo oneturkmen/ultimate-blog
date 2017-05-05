@@ -5,6 +5,11 @@ var monk = require('monk');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+/* Models: */
+/* Email -> for registration notification (to user's email) */
+/* User  -> for user authorization/authentication */
+/* Auth  -> to be sure that user if authorized into the system */
+var Email = require('../models/email');
 var User = require('../models/user');
 var auth = require('../models/auth');
 
@@ -70,9 +75,11 @@ router.post('/register', function(req, res, next) {
           }
         });
 
+        /* Send email notification of registration to the user */
+        Email.sendEmailNotification(newUser);
 
         // Success message
-        req.flash('success', 'Yay! You are successfully registered.');
+        req.flash('success', 'Yay! You are successfully registered. You must have received an email from us...');
         res.location('/');
         res.redirect('/');
       }

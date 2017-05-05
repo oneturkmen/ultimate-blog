@@ -21,6 +21,7 @@
     "monk": "*",
     "morgan": "~1.7.0",
     "multer": "*",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
