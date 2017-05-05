@@ -1,6 +1,11 @@
 # Ultimate Blog
 Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting purposes. Probably, I will change the audience and the website itself (from blog -> to something else) soon (no earlier than mid-May).
 
+## Warning!
+You need to set up your own email credentials, from which email notifications will be sent.
+You can also do that via specifying user environment (PROCESS.ENV, *not present in this project YET*)
+Please check in 'models/email.js'
+
 ## Installation
 1. Fork/Download it.
 2. npm install & start
