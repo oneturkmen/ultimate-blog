@@ -6,8 +6,8 @@ module.exports.sendEmailNotification = function(user) {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'microservices.blog@gmail.com',
-            pass: 'nod3blog97!'
+            user: 'YOUR_EMAIL',
+            pass: 'YOUR_EMAIL_PASS'
         }
     });
 
