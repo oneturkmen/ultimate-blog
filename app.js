@@ -29,11 +29,16 @@ var mongo = require('mongodb');
 var multer = require('multer');
 var flash = require('connect-flash');
 
+// Routes
 var routes = require('./routes/index');
 var posts = require('./routes/posts');
 var categories = require('./routes/categories');
 var users = require('./routes/users');
 
+// Models
+var Auth = require('./models/auth');
+
+// Mongo Database
 var db = require('monk')('localhost/nodeblog');
 
 var app = express();
@@ -85,6 +90,24 @@ app.use(expressValidator({
       msg   : msg,
       value : value
     };
+  },
+  /* FIXME:
+    1) Add password check (minimum 1 capital letter, 1 number at least)
+    2) Password and username cannot start with number
+  */
+  customValidators: {
+    isMinimumSize: function (param) {
+      return ( param.length >= 6 ? true : false );
+    },
+    notMaximumSize: function(param) {
+      return ( param.length <= 12 ? true : false);
+    },
+    noSpaces: function(param) {
+      return ( param.indexOf(' ') >= 0 ? false : true );
+    },
+    passwordIsOk: function(param) {
+      return Auth.validatePassword(param);
+    }
   }
 }));
 

@@ -30,12 +30,23 @@ router.post('/register', function(req, res, next) {
   var password = req.body.password;
   var password2 = req.body.password2;
 
-  // Form validation -> handle the checking if everything is present
+  /* Form validation -> handle the checking if everything is present */
+  /* isMinimumSize() is custom validator */
   req.checkBody('name', 'Name field is required').notEmpty();
+
   req.checkBody('email', 'Email field is required').notEmpty();
   req.checkBody('email', 'Email not valid').isEmail();
+
   req.checkBody('username', 'Username field is required').notEmpty();
+  req.checkBody('username', 'Minimum 5 characters required for username').isMinimumSize();
+  req.checkBody('username', 'Maximum 12 characters allowed for username').notMaximumSize();
+
   req.checkBody('password', 'Password field is required').notEmpty();
+  req.checkBody('password', 'Minimum 5 characters required for password').isMinimumSize();
+  req.checkBody('password', 'Maximum 12 characters required for username').notMaximumSize();
+  req.checkBody('password', 'No spaces in the password please').noSpaces();
+  req.checkBody('password', 'At least 1 symbol, 1 capital letter, and 1 number required').passwordIsOk();
+
   req.checkBody('password2', 'Passwords do not match').equals(password);
 
   var errors = req.validationErrors();
