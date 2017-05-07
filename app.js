@@ -6,22 +6,10 @@ var expressValidator = require('express-validator');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-/* ADD: Passport and passport-local */
-/* Tasks: */
-/* DONE => 1) Add passport-local and strategy in app.js */
-/* DONE => 2) Prepare login.jade & register.jade for blog*/
-/* DONE => 3) Add passport into index.js in order to ensure user authenticated*/
-/*    If not, redirect to 'login.jade' */
-/*    Else, redirect to main page */
-/*    Note, that if not logged in, only login/registration pages are available */
-/*    If logged in, main/add post/add category pages are available as well as logout */
-/* DONE => 4) Create separate users.js router + add usernames of users.*/
-/* 5) Add logout functionality */
-/* Good luck to me, hohoho */
-/* PS. Start when you completely finish the blog functionality as planned */
-/*     and only after add authentication procedures */
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+// Sockets!
 
 var bodyParser = require('body-parser');
 
@@ -34,6 +22,7 @@ var routes = require('./routes/index');
 var posts = require('./routes/posts');
 var categories = require('./routes/categories');
 var users = require('./routes/users');
+var chat = require('./routes/chat');
 
 // Models
 var Auth = require('./models/auth');
@@ -136,6 +125,7 @@ app.use('/', routes);
 app.use('/posts', posts);
 app.use('/categories', categories);
 app.use('/users', users);
+app.use('/chat', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h2=title
+  ul.errors
+    if errors
+      each error, i in errors
+        li.alert.alert-danger #{error.msg}
+  .chat-box
+    ul.chat-messages
+      li hi
+      li hey, what's up?
+      li i am good! this looks shitty!
+      li thanks, i tried! hehe
+  .chat-form
+    form(method='post', action='/chat', enctype="multipart/form-data")
+      input.input-msg-box(name='message-content', type='text')
+      input.send-msg-btn(name='submit', type='submit', value='Save')

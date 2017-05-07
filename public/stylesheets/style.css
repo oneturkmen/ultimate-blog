@@ -260,3 +260,47 @@ a.post_title:hover {
   font-style: normal;
   color: #ac0a0a;
 }
+
+/* Chat box and ul messages */
+.chat-box {
+  border: 1px solid black;
+  margin: 25px auto;
+}
+
+.chat-messages {
+  margin: 25px auto;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+.chat-messages li {
+  margin: 10px 25px;
+  background-color: #ddd;
+  padding: 20px;
+}
+
+.chat-messages li:nth-child(odd) {
+  background-color: #bbb;
+}
+
+.chat-form {
+  text-align: center;
+}
+
+.input-msg-box {
+  margin-right: 50px;
+  width: 500px;
+  height: 500px;
+}
+
+.send-msg-btn {
+  width: 75px;
+  height: 40px;
+  background: #404137;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.send-msg-btn:hover {
+  background-color: #ac0a0a;
+}
