@@ -8,9 +8,6 @@ var session = require('express-session');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
-// Sockets!
-
 var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
@@ -30,10 +27,14 @@ var Auth = require('./models/auth');
 // Mongo Database
 var db = require('monk')('localhost/nodeblog');
 
-var app = express();
+// FIRE IN  THE HALL
+var app  = express();
+var server = require('http').createServer(app);
 
+// Moment - for date/time
 app.locals.moment = require('moment');
 
+// For body of the posts
 app.locals.truncateText = function(text, length) {
   var truncatedText = text.substring(0, length);
   return truncatedText;

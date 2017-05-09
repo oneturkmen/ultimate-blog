@@ -274,6 +274,7 @@ a.post_title:hover {
 }
 
 .chat-messages li {
+  font-size: 14px;
   margin: 10px 25px;
   background-color: #ddd;
   padding: 20px;

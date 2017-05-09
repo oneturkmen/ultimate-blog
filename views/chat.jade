@@ -8,11 +8,22 @@ block content
         li.alert.alert-danger #{error.msg}
   .chat-box
     ul.chat-messages
-      li hi
-      li hey, what's up?
-      li i am good! this looks shitty!
-      li thanks, i tried! hehe
+      li Dummy
   .chat-form
-    form(method='post', action='/chat', enctype="multipart/form-data")
-      input.input-msg-box(name='message-content', type='text')
-      input.send-msg-btn(name='submit', type='submit', value='Save')
+    form(method='post', action='')
+      input.input-msg-box(name='message', type='text', autocomplete='off')
+      button Submit
+  script(src='socket.io/socket.io.js')
+  script(src="https://code.jquery.com/jquery-1.11.1.js")
+  script.
+    $(function() {
+      var socket = io();
+      $('form').submit(function () {
+        socket.emit('chat message', $('.input-msg-box').val());
+        $('.input-msg-box').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg) {
+        $('.chat-messages').append( $('<li>').text(msg) );
+      });
+    });
