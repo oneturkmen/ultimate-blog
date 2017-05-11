@@ -1,8 +1,16 @@
-extends layout
-
-block content
-  div.notfound
-    p Sorry, not found ...
-    div.takeback
-      p But! We can take you back!
-      a(href='/') Take me back!
+doctype html
+html
+  head
+    title= NodeBlog
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .container
+      img.logo(src='/images/logo.png')
+      != messages()
+        div.notfound
+          p Sorry, not found ...
+          div.takeback
+            p But! We can take you back!
+            a(href='/') Take me back!
+      footer
+        p Ultimate AUBG &copy; 2017. All rights reserved.

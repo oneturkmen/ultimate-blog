@@ -29,7 +29,6 @@ var db = require('monk')('localhost/nodeblog');
 
 // FIRE IN  THE HALL
 var app  = express();
-var server = require('http').createServer(app);
 
 // Moment - for date/time
 app.locals.moment = require('moment');
@@ -81,10 +80,7 @@ app.use(expressValidator({
       value : value
     };
   },
-  /* FIXME:
-    1) Add password check (minimum 1 capital letter, 1 number at least)
-    2) Password and username cannot start with number
-  */
+  // Customer validators for password validation
   customValidators: {
     isMinimumSize: function (param) {
       return ( param.length >= 6 ? true : false );
@@ -117,7 +113,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('*', function(req, res, next) {
+app.get('*', function(req, res, next) {  
   res.locals.user = req.user || null;
   next();
 });

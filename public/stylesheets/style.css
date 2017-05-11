@@ -267,20 +267,20 @@ a.post_title:hover {
   margin: 25px auto;
 }
 
-.chat-messages {
+#chat-messages {
   margin: 25px auto;
   list-style-type: none;
   box-sizing: border-box;
 }
 
-.chat-messages li {
+#chat-messages li {
   font-size: 14px;
   margin: 10px 25px;
   background-color: #ddd;
   padding: 20px;
 }
 
-.chat-messages li:nth-child(odd) {
+#chat-messages li:nth-child(odd) {
   background-color: #bbb;
 }
 
