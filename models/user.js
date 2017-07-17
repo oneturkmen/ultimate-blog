@@ -1,7 +1,11 @@
 // USER MODEL - - - - - - - - - - - - - - -
 // monk instead of mongoose
 var bcrypt = require('bcrypt');
-var dbs = require('monk')('localhost/nodeblog');
+require('dotenv').config()
+
+var MONGODB_URI = process.env.MONGODB_URI;
+var dbs = require('monk')(MONGODB_URI);
+var ObjectID = require('monk').id;
 var User = dbs.get('users');
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
@@ -11,14 +15,23 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
   });
 }
 
-module.exports.getUserById = function(id, callback) {
-  User.findById(id, callback);
+module.exports.getUserById = function(id) {
+  return new Promise((resolve, reject) => {
+      User.findOne({ _id: id })
+        .then(doc => {
+            resolve(doc);
+        })
+        .catch(error => {
+            reject(error);
+        });
+  });
 }
 
 module.exports.getUserByUsername = function(username, callback) {
   var query = {
     username: username
   };
+  console.log(`getting by username;`);
   User.findOne(query, {}, callback);
 }
 

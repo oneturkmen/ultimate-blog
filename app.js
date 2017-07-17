@@ -25,7 +25,8 @@ var chat = require('./routes/chat');
 var Auth = require('./models/auth');
 
 // Mongo Database
-var db = require('monk')('localhost/nodeblog');
+var MONGODB_URI = process.env.MONGODB_URI;
+var db = require('monk')(MONGODB_URI);
 
 // FIRE IN  THE HALL
 var app  = express();
@@ -113,7 +114,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('*', function(req, res, next) {  
+app.get('*', function(req, res, next) {
   res.locals.user = req.user || null;
   next();
 });

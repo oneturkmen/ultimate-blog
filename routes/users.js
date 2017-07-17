@@ -113,9 +113,13 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   console.log("deserializing...");
-  User.getUserById(id, function(err, user) {
-    done(err, user);
-  });
+  User.getUserById(id)
+    .then(doc => {
+        done(null, doc);
+    })
+    .catch(error => {
+        throw error;
+    });
 });
 
 
@@ -132,7 +136,7 @@ passport.use(new LocalStrategy( function(username, password, done) {
 
       User.comparePassword(password, user.password, function(err, isMatch) {
         if (err) throw err;
-
+        console.log('comparing password ...');
         if (isMatch) {
           console.log('password match');
           return done(null, user);

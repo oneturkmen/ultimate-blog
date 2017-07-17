@@ -5,6 +5,7 @@ var app = express();
 var auth = require('../models/auth');
 
 router.get('/', auth.ensureAuthenticated, function(req, res, next) {
+  console.log(`I am here ${req.user.username}`);
   res.render('chat', {
     title: 'Chat',
     user: req.user.username
