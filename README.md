@@ -3,13 +3,19 @@ Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting 
 
 ## Warning note
 
-* You need to set up your own email credentials, from which email notifications will be sent. Check `models/email.js`.
-* Database inside the project is **local** (on premise). You better leverage [MLab](https://mlab.com/), online MongoDB cloud service (database-as-a-service).
+* You need to set up your own email credentials, from which email notifications will be sent. Check `models/email.js` for the code. As you come up with your email and password, add them to the `.env` under `N_EMAIL` and `N_EMAIL_PASS` variables (keys).
+
+* Make sure you have the `MONGODB_URI` (MongoDB connection string) in your `.env` file (in the root folder).
 
 ## Installation
+
 1. `npm install`
 2. `npm start`
 3. Check your localhost for the connection.
+
+## Live demo
+
+*Coming soon*
 
 ## Current version
 
