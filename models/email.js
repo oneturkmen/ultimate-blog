@@ -1,13 +1,17 @@
 var nodemailer = require('nodemailer');
+require('dotenv').config()
 
 module.exports.sendEmailNotification = function(user) {
 
     /* Create transporter obj using SMTP transporter*/
+    /* N_EMAIL - notification email */
+    /* N_EMAIL_PASS - notification email */
+    /* Define both in .env file. */
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'YOUR_EMAIL',
-            pass: 'YOUR_EMAIL_PASS'
+            user: process.env.N_EMAIL,
+            pass: process.env.N_EMAIL_PASS
         }
     });
 
