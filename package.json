@@ -8,7 +8,7 @@
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^3.0.1",
     "body-parser": "~1.18.2",
     "connect-flash": "*",
     "cookie-parser": "~1.4.3",
@@ -18,7 +18,6 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-    "jade": "~1.11.0",
     "moment": "*",
     "mongodb": "*",
     "monk": "*",
@@ -28,9 +27,10 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "password-validator": "^3.0.0",
+    "pug": "^2.0.3",
     "serve-favicon": "~2.4.5",
-    "socket.io": "^2.0.1",
-    "snyk": "^1.47.0"
+    "snyk": "^1.47.0",
+    "socket.io": "^2.0.1"
   },
   "snyk": true
 }
