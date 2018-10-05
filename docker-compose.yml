@@ -1,0 +1,21 @@
+version: '2'
+services:
+  api:
+    container_name: 'api'
+    build: .
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongo
+    ports:
+      - '3000:3000'
+    depends_on:
+      - 'mongo'
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - '27017:27017'
+volumes:
+  ? mongodata
