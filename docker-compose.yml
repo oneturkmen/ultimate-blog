@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  api:
+    container_name: nodeblog
+    restart: always
+    environment: 
+         - NODE_ENV=${NODE_ENV}
+         - N_EMAIL=${N_EMAIL}
+         - N_EMAIL_PASS=${N_EMAIL_PASS}
+         - MONGODB_URI=${MONGODB_URI}
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+       - ${MONGO_LOCAL_DIRECTORY}:/data/db
+    ports:
+      - "27017:27017"
