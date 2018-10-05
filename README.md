@@ -13,6 +13,19 @@ Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting 
 2. `npm start`
 3. Check your localhost for the connection.
 
+## Running with Docker
+
+In the project root folder, where the file `docker-compose.yml` is located, and run the following command:
+
+```bash
+docker-compose up
+```
+
+> Once the images are built, `docker-compose` will spin up the containers (`api` and `mongo`).
+
+Now you can check your localhost
+
+
 ## Live demo
 
 *Coming soon*
