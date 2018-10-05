@@ -15,7 +15,7 @@ Blog for Ultimate Frisbee players at AUBG. Created for learning & experimenting 
 
 ## Running with Docker
 
-In the project root folder, where the file `docker-compose.yml` is located, and run the following command:
+In the project root folder, where the file `docker-compose.yml` is located, run the following command:
 
 ```bash
 docker-compose up
