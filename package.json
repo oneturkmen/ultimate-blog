@@ -30,7 +30,8 @@
     "password-validator": "^4.1.1",
     "serve-favicon": "^2.5.0",
     "socket.io": "^2.1.1",
-    "synk": "0.0.2"
+    "synk": "0.0.2",
+    "snyk": "^1.189.0"
   },
   "snyk": true
 }
